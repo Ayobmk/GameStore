@@ -1,7 +1,56 @@
 ﻿@page "/"
 
-<PageTitle>Game Store</PageTitle>
+@using Models
 
-<h1>Hello, Blazor!</h1>
+<PageTitle>Game Catalog</PageTitle>
 
-Welcome to your new app.
+<table>
+    <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Genre</th>
+        <th>Price</th>
+        <th>Release Date</th>
+    </thead>
+    <tbody>
+        @foreach (var game in games){
+            <tr>
+                <td>@game.Id</td>
+                <td>@game.Name</td>
+                <td>@game.Genre</td>
+                <td>@game.Price</td>
+                <td>@game.ReleaseDate</td>
+                <td>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    private GameSummary[] games = 
+    [
+        new(){
+            Id = 1,
+            Name = "Street Fighter II ",
+            Genre = "Fighting",
+            Price = 19.99M,
+            ReleaseDate = new DateOnly(1992, 7, 15)
+        },
+        new(){
+            Id = 2,
+            Name = "Final Fantasy XIV",
+            Genre = "Roleplaying",
+            Price = 59.99M,
+            ReleaseDate = new DateOnly(2010, 9, 30)
+        },
+        new(){
+            Id = 3,
+            Name = "FIFA 24",
+            Genre = "Sports",
+            Price = 69.99M,
+            ReleaseDate = new DateOnly(2022, 9, 27)
+        }
+    ];
+}
