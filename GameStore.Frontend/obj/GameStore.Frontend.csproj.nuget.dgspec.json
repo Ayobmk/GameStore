@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ayoub\\Desktop\\Algonquin College\\ayoub project C#\\C#\\GameStore\\GameStore.Frontend\\GameStore.Frontend.csproj": {}
+    "c:\\Users\\ayoub\\Desktop\\Algonquin College\\ayoub project C#\\C#\\GameStore\\GameStore.Frontend\\GameStore.Frontend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ayoub\\Desktop\\Algonquin College\\ayoub project C#\\C#\\GameStore\\GameStore.Frontend\\GameStore.Frontend.csproj": {
+    "c:\\Users\\ayoub\\Desktop\\Algonquin College\\ayoub project C#\\C#\\GameStore\\GameStore.Frontend\\GameStore.Frontend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ayoub\\Desktop\\Algonquin College\\ayoub project C#\\C#\\GameStore\\GameStore.Frontend\\GameStore.Frontend.csproj",
+        "projectUniqueName": "c:\\Users\\ayoub\\Desktop\\Algonquin College\\ayoub project C#\\C#\\GameStore\\GameStore.Frontend\\GameStore.Frontend.csproj",
         "projectName": "GameStore.Frontend",
-        "projectPath": "C:\\Users\\ayoub\\Desktop\\Algonquin College\\ayoub project C#\\C#\\GameStore\\GameStore.Frontend\\GameStore.Frontend.csproj",
+        "projectPath": "c:\\Users\\ayoub\\Desktop\\Algonquin College\\ayoub project C#\\C#\\GameStore\\GameStore.Frontend\\GameStore.Frontend.csproj",
         "packagesPath": "C:\\Users\\ayoub\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ayoub\\Desktop\\Algonquin College\\ayoub project C#\\C#\\GameStore\\GameStore.Frontend\\obj\\",
+        "outputPath": "c:\\Users\\ayoub\\Desktop\\Algonquin College\\ayoub project C#\\C#\\GameStore\\GameStore.Frontend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ayoub\\AppData\\Roaming\\NuGet\\NuGet.Config"
