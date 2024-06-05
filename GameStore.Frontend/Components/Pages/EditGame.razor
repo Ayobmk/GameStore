@@ -1,0 +1,77 @@
+﻿@page "/editgame"
+@inject NavigationManager NavigationManager
+@inject GamesClient GamesClient
+@inject GenresClient GenresClient
+
+<PageTitle>New game</PageTitle>
+<h3>New Game</h3>
+
+@if(genres is null)
+{
+    <p><em>Loading...</em></p>
+}
+else 
+{
+    <div class="row">
+        <div class="col-md-4">
+            <EditForm Model="@game" FormName="editGame" OnValidSubmit="HandleSubmit">@*change OnSubmit to OnValidSubmit to let the form know that it have to perform this validation when the user try to subbmit the form into the server*@
+                <DataAnnotationsValidator/>
+                <ValidationSummary /> @* this one we can use it for put display all the error msg in one place *@
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <InputText id="name" @bind-Value="game.Name" class="form-control"/>
+                    <ValidationMessage For="() => game.Name"/>
+                </div>
+                <div class="mb-3">
+                    <label for="genre" class="form-label">Genre:</label>
+                    <InputSelect id="genre" @bind-Value="game.GenreId" class="form-select">
+                        <option value="">Select a genre</option>
+                        @foreach(var genre in genres)
+                        {
+                            <option value="@genre.Id">@genre.Name</option>
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="() => game.GenreId"/>
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price:</label>
+                    <InputNumber id="price" @bind-Value="game.Price" class="form-control"/>
+                    <ValidationMessage For="() => game.Price"/>
+                </div>
+                <div class="mb-3">
+                    <label for="releaseDate" class="form-label">Release Date:</label>
+                    <InputDate id="releaseDate" @bind-Value="game.ReleaseDate" class="form-control"/>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a role="button" class="btn btn-secondary" href="/">Cancel</a>
+            </EditForm>
+        </div>
+    </div>
+}
+
+
+@code {
+    [SupplyParameterFromForm]
+    private GameDetails game {get; set;} = new()
+    {
+        Name = string.Empty,
+        ReleaseDate = DateOnly.FromDateTime(DateTime.UtcNow)
+    };
+
+    @* private GenresClient genresClient = new(); same here we don,t need iit anymore*@
+    @* private GamesClient gamesClient = new(); so i don't need this one too because of the instance injected in the top of the page*@
+
+    private Genre[]? genres;
+
+    protected override void OnInitialized()
+    {
+        genres = GenresClient.GetGenres();@*change genresClient to GenresClient*@
+    }
+
+    private void HandleSubmit()
+    {
+        GamesClient.AddGame(game);@*the same here change gamesClient to GamesClient that injected*@
+        //so here we can start coding our validation but in blazor there is a better way by using data annotation
+        NavigationManager.NavigateTo("/");
+    }
+}
