@@ -1,6 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace GameStore.Frontend.Models;
+using GameStore.Frontend.Converters;
 
 public class GameDetails
 
@@ -12,6 +15,7 @@ public class GameDetails
     public required string Name { get; set; }
 
     [Required (ErrorMessage = "Genre filed is required")]
+    [JsonConverter(typeof(StringConverter))]
     public string? GenreId { get; set; }
 
     [Range(1, 100, ErrorMessage = "Price must be between 1 and 100.")] //we can add the error msg oor just let the Blazor do them for us

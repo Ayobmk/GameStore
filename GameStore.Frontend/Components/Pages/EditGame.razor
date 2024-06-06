@@ -17,7 +17,7 @@ else
 {
     <div class="row">
         <div class="col-md-4">
-            <EditForm Model="@game" FormName="editGame" OnValidSubmit="HandleSubmitAsync">@*change OnSubmit to OnValidSubmit to let the form know that it have to perform this validation when the user try to subbmit the form into the server*@
+            <EditForm Model="@game" FormName="editGame" OnValidSubmit="HandleSubmitAsync" Enhance>@*change OnSubmit to OnValidSubmit to let the form know that it have to perform this validation when the user try to subbmit the form into the server*@
                 <DataAnnotationsValidator/>
                 <ValidationSummary /> @* this one we can use it for put display all the error msg in one place *@
                 <div class="mb-3">
