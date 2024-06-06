@@ -51,9 +51,9 @@ else{
     @* private GamesClient client = new(); i'm no loger need this instance cz i injected the innstance in the top of the page*@ 
     private GameSummary[]? games;
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        games = Client.GetGames(); @*and i changed client to CLient to use the injeccted instance*@
+        games = await Client.GetGamesAsync(); @*and i changed client to CLient to use the injeccted instance*@
     }
 
     private static string GameUrl(int id) => $"/editgame/{id}";

@@ -17,7 +17,7 @@ else
 {
     <div class="row">
         <div class="col-md-4">
-            <EditForm Model="@game" FormName="editGame" OnValidSubmit="HandleSubmit">@*change OnSubmit to OnValidSubmit to let the form know that it have to perform this validation when the user try to subbmit the form into the server*@
+            <EditForm Model="@game" FormName="editGame" OnValidSubmit="HandleSubmitAsync">@*change OnSubmit to OnValidSubmit to let the form know that it have to perform this validation when the user try to subbmit the form into the server*@
                 <DataAnnotationsValidator/>
                 <ValidationSummary /> @* this one we can use it for put display all the error msg in one place *@
                 <div class="mb-3">
@@ -66,7 +66,7 @@ else
     private Genre[]? genres;
     private string title = string.Empty;
 
-    protected override void OnParametersSet()
+    protected override async Task OnParametersSetAsync()
     {
         if (game is not null)
         {
@@ -75,7 +75,7 @@ else
 
         if (Id is not null)
         {
-            game = GamesClient.GetGame(Id.Value);
+            game = await GamesClient.GetGameAsync(Id.Value);
             title = $"Edit {game.Name}";
         }
         else
@@ -89,23 +89,23 @@ else
             title = "New Game";
         }
     }
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        genres = GenresClient.GetGenres();@*change genresClient to GenresClient*@
+        genres = await GenresClient.GetGenresAsync();@*change genresClient to GenresClient*@
     }
 
-    private void HandleSubmit()
+    private async Task HandleSubmitAsync()
     {
         ArgumentNullException.ThrowIfNull(game);
 
         if (Id is null)
         {
-        GamesClient.AddGame(game);@*the same here change gamesClient to GamesClient that injected*@
+        await GamesClient.AddGameAsync(game);@*the same here change gamesClient to GamesClient that injected*@
         }
         else
         {
             game.Id = Id.Value;
-            GamesClient.UpdateGame(game);
+            await GamesClient.UpdateGameAsync(game);
         }
         //so here we can start coding our validation but in blazor there is a better way by using data annotation
         NavigationManager.NavigateTo("/");
